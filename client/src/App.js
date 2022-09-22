@@ -2,7 +2,6 @@ import "./App.css";
 import { useState, useEffect } from "react";
 import webSocket from "socket.io-client";
 import axios from "axios";
-import moment from "moment";
 import { baseURL } from "./constants/constants";
 import Line from "./components/Line";
 

@@ -3,7 +3,7 @@
   font-family: monospace;
   display: flex;
   flex-direction: row;
-  justify-content: start;
+  justify-content: flex-start;
   margin: 0.5rem;
   font-size: large;
 }
