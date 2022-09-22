@@ -1,5 +1,19 @@
 {
   "scripts": {
     "start": "cd server && npm install && npm run start"
-  }
+  },
+  "name": "onlinelogsviewer",
+  "description": "",
+  "version": "1.0.0",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/ba144220/OnlineLogsViewer.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/ba144220/OnlineLogsViewer/issues"
+  },
+  "homepage": "https://github.com/ba144220/OnlineLogsViewer#readme"
 }
