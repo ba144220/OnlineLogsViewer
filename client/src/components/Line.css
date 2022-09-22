@@ -1,0 +1,31 @@
+.line {
+  width: 100%;
+  font-family: monospace;
+  display: flex;
+  flex-direction: row;
+  justify-content: start;
+  margin: 0.5rem;
+  font-size: large;
+}
+.line-type {
+  min-width: 5rem;
+  font-weight: bold;
+}
+.obj {
+  color: lime;
+}
+.log {
+  color: yellow;
+}
+
+.line-created-at {
+  min-width: 12rem;
+  color: gray;
+  text-align: right;
+}
+
+.line-content {
+  text-align: left;
+  max-width: calc(100% - 20rem);
+  overflow-wrap: break-word;
+}

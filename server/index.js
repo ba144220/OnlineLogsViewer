@@ -6,8 +6,12 @@ const dotenv = require("dotenv");
 const http = require("http");
 const { Server } = require("socket.io");
 const { LogModel } = require("./models/LogModel");
-const { postLogs, getLogs } = require("./controllers/Logs");
-const { getObjects, postObjects } = require("./controllers/Objects");
+const { postLogs, getLogs, deleteLogs } = require("./controllers/Logs");
+const {
+  getObjects,
+  postObjects,
+  deleteObjects,
+} = require("./controllers/Objects");
 
 dotenv.config();
 
@@ -30,9 +34,11 @@ app.get("/", async (req, res) => {
 });
 app.get("/logs", getLogs);
 app.post("/logs", postLogs);
+app.delete("/logs", deleteLogs);
 
 app.get("/objects", getObjects);
 app.post("/objects", postObjects);
+app.delete("/objects", deleteObjects);
 
 app.set("socket", io);
 
