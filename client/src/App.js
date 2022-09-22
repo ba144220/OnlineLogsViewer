@@ -77,7 +77,7 @@ function App() {
     <div className="App">
       <div className="App-header">
         {lines.map((line) => {
-          return <Line line={line} />;
+          return <Line line={line} key={line.id} />;
         })}
       </div>
     </div>
