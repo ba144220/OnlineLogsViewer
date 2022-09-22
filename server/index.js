@@ -5,6 +5,9 @@ const mongoose = require("mongoose");
 const dotenv = require("dotenv");
 const http = require("http");
 const { Server } = require("socket.io");
+const { LogModel } = require("./models/LogModel");
+const { postLogs, getLogs } = require("./controllers/Logs");
+const { getObjects, postObjects } = require("./controllers/Objects");
 
 dotenv.config();
 
@@ -22,9 +25,14 @@ const io = new Server(server, {
   },
 });
 
-app.get("/", (req, res) => {
+app.get("/", async (req, res) => {
   res.status(200).send("Welcome to train viewer");
 });
+app.get("/logs", getLogs);
+app.post("/logs", postLogs);
+
+app.get("/objects", getObjects);
+app.post("/objects", postObjects);
 
 app.set("socket", io);
 
@@ -34,8 +42,8 @@ mongoose
     useUnifiedTopology: true,
   })
   .then(() => {
-    server.listen(PORT, () =>
-      console.log(`Server Running on Port: http://localhost:${PORT}`)
+    server.listen(port, () =>
+      console.log(`Server Running on Port: http://localhost:${port}`)
     );
     io.on("connection", (socket) => {
       console.log("new socket connected");
