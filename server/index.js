@@ -28,7 +28,17 @@ app.get("/", (req, res) => {
 
 app.set("socket", io);
 
-app.listen(port, () => console.log(`Server running on port: ${port}`));
-io.on("connection", (socket) => {
-  console.log("new socket connected");
-});
+mongoose
+  .connect(process.env.CONNECTION_URL, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+  })
+  .then(() => {
+    server.listen(PORT, () =>
+      console.log(`Server Running on Port: http://localhost:${PORT}`)
+    );
+    io.on("connection", (socket) => {
+      console.log("new socket connected");
+    });
+  })
+  .catch((error) => console.log(`${error} did not connect`));
