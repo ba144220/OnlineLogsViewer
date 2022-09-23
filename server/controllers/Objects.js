@@ -3,10 +3,11 @@ const { ObjectModel } = require("../models/ObjectModel.js");
 exports.getObjects = async (req, res) => {
   try {
     const title = req.query?.title;
+    let data;
     if (title) {
-      const data = await ObjectModel.find({ visible: true, title: title });
+      data = await ObjectModel.find({ visible: true, title: title });
     } else {
-      const data = await ObjectModel.find({ visible: true });
+      data = await ObjectModel.find({ visible: true });
     }
     return res.status(200).json(data);
   } catch (error) {
