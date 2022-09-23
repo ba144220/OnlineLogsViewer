@@ -79,6 +79,7 @@ function App() {
 
   return (
     <div className="App">
+      <div>plot</div>
       <div className="App-header">
         {lines.map((line) => {
           return <Line line={line} key={line.id} />;
