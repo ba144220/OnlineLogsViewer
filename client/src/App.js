@@ -4,6 +4,17 @@ import webSocket from "socket.io-client";
 import axios from "axios";
 import { baseURL } from "./constants/constants";
 import Line from "./components/Line";
+import {
+  Chart as ChartJS,
+  LinearScale,
+  PointElement,
+  LineElement,
+  Tooltip,
+  Legend,
+} from "chart.js";
+
+import { Scatter } from "react-chartjs-2";
+ChartJS.register(LinearScale, PointElement, LineElement, Tooltip, Legend);
 
 function App() {
   const [ws, setWs] = useState(null);
@@ -79,7 +90,87 @@ function App() {
 
   return (
     <div className="App">
-      <div>plot</div>
+      <div className="chart">
+        <Scatter
+          options={{
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          }}
+          data={{
+            datasets: [
+              {
+                label: "train loss",
+                data: lines
+                  .filter((l) => l.type === "obj")
+                  .filter((l) => l.title === "origin_baseline")
+                  .map((l) => {
+                    return {
+                      x: JSON.parse(l.content).epoch,
+                      y: JSON.parse(l.content).train_loss,
+                    };
+                  }),
+                backgroundColor: "rgba(255, 99, 132, 1)",
+              },
+              {
+                label: "validation loss",
+                data: lines
+                  .filter((l) => l.type === "obj")
+                  .filter((l) => l.title === "origin_baseline")
+                  .map((l) => {
+                    return {
+                      x: JSON.parse(l.content).epoch,
+                      y: JSON.parse(l.content).val_loss,
+                    };
+                  }),
+                // backgroundColor: "rgba(255, 99, 132, 1)",
+              },
+            ],
+          }}
+        />
+        <Scatter
+          options={{
+            scales: {
+              y: {
+                beginAtZero: true,
+              },
+            },
+          }}
+          data={{
+            datasets: [
+              {
+                label: "val cer",
+                data: lines
+                  .filter((l) => l.type === "obj")
+                  .filter((l) => l.title === "origin_baseline")
+                  .map((l) => {
+                    return {
+                      x: JSON.parse(l.content).epoch,
+                      y: JSON.parse(l.content).val_cer,
+                    };
+                  }),
+                // backgroundColor: "rgba(255, 99, 132, 1)",
+              },
+              {
+                label: "validation wer",
+                data: lines
+                  .filter((l) => l.type === "obj")
+                  .filter((l) => l.title === "origin_baseline")
+                  .map((l) => {
+                    return {
+                      x: JSON.parse(l.content).epoch,
+                      y: JSON.parse(l.content).val_wer,
+                    };
+                  }),
+                // backgroundColor: "rgba(255, 99, 132, 1)",
+              },
+            ],
+          }}
+        />
+      </div>
+
       <div className="App-header">
         {lines.map((line) => {
           return <Line line={line} key={line.id} />;

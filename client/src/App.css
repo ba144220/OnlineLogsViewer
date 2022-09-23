@@ -12,6 +12,9 @@
   font-size: calc(10px + 2vmin);
   color: white;
 }
+.chart {
+  background-color: #fff;
+}
 
 .App-link {
   color: #61dafb;
