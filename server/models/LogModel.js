@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const LogSchema = mongoose.Schema({
   content: String,
+  title: { type: String, required: true },
   visible: {
     type: Boolean,
     default: true,

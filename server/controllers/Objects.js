@@ -11,8 +11,8 @@ exports.getObjects = async (req, res) => {
 };
 exports.postObjects = async (req, res) => {
   try {
-    const { content } = req.body;
-    const newObejct = new ObjectModel({ content: content });
+    const { content, title } = req.body;
+    const newObejct = new ObjectModel({ content: content, title: title });
     await newObejct.save();
     const io = await req.app.get("socket");
     io.emit("object", newObejct);

@@ -11,8 +11,8 @@ exports.getLogs = async (req, res) => {
 };
 exports.postLogs = async (req, res) => {
   try {
-    const { content } = req.body;
-    const newLog = new LogModel({ content: content });
+    const { content, title } = req.body;
+    const newLog = new LogModel({ content: content, title: title });
     await newLog.save();
     const io = await req.app.get("socket");
     io.emit("log", newLog);

@@ -2,6 +2,7 @@ const mongoose = require("mongoose");
 
 const ObjectSchema = mongoose.Schema({
   content: Object,
+  title: { type: String, required: true },
   visible: {
     type: Boolean,
     default: true,
