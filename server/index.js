@@ -12,6 +12,7 @@ const {
   postSamples,
   deleteSamples,
 } = require("./controllers/Samples");
+const usersRouter = require("./routers/Users");
 
 dotenv.config();
 
@@ -32,6 +33,9 @@ const io = new Server(server, {
 app.get("/", async (req, res) => {
   res.status(200).send("Welcome to train viewer");
 });
+
+app.use("/users", usersRouter);
+
 app.get("/logs", getLogs);
 app.post("/logs", postLogs);
 app.delete("/logs", deleteLogs);
