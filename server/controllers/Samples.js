@@ -1,13 +1,13 @@
-const { ObjectModel } = require("../models/ObjectModel.js");
+const { SampleModel } = require("../models/SampleModel.js");
 
-exports.getObjects = async (req, res) => {
+exports.getSamples = async (req, res) => {
   try {
     const title = req.query?.title;
     let data;
     if (title) {
-      data = await ObjectModel.find({ visible: true, title: title });
+      data = await SampleModel.find({ visible: true, title: title });
     } else {
-      data = await ObjectModel.find({ visible: true });
+      data = await SampleModel.find({ visible: true });
     }
     return res.status(200).json(data);
   } catch (error) {
@@ -15,13 +15,13 @@ exports.getObjects = async (req, res) => {
     return res.status(500).send();
   }
 };
-exports.postObjects = async (req, res) => {
+exports.postSamples = async (req, res) => {
   try {
     const { content, title } = req.body;
-    const newObejct = new ObjectModel({ content: content, title: title });
+    const newObejct = new SampleModel({ content: content, title: title });
     await newObejct.save();
     const io = await req.app.get("socket");
-    io.emit("object", newObejct);
+    io.emit("Sample", newObejct);
     return res.status(200).send();
   } catch (error) {
     console.log(error);
@@ -29,9 +29,9 @@ exports.postObjects = async (req, res) => {
   }
 };
 
-exports.deleteObjects = async (req, res) => {
+exports.deleteSamples = async (req, res) => {
   try {
-    await ObjectModel.updateMany({ visible: true }, { visible: false });
+    await SampleModel.updateMany({ visible: true }, { visible: false });
     return res.status(200).send();
   } catch (error) {
     console.log(error);

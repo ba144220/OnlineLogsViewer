@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const LogSchema = mongoose.Schema({
+const LogSchema = new mongoose.Schema({
   content: String,
   title: { type: String, required: true },
   visible: {
@@ -12,6 +12,6 @@ const LogSchema = mongoose.Schema({
     default: Date.now,
   },
 });
-const LogModel = mongoose.model("log", LogSchema);
+const LogModel = mongoose.model("Log", LogSchema);
 
 module.exports = { LogSchema, LogModel };

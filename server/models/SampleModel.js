@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
 
-const ObjectSchema = mongoose.Schema({
+const SampleSchema = new mongoose.Schema({
   content: Object,
   title: { type: String, required: true },
   visible: {
@@ -12,6 +12,6 @@ const ObjectSchema = mongoose.Schema({
     default: Date.now,
   },
 });
-const ObjectModel = mongoose.model("object", ObjectSchema);
+const SampleModel = mongoose.model("Sample", SampleSchema);
 
-module.exports = { ObjectSchema, ObjectModel };
+module.exports = { SampleSchema, SampleModel };

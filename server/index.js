@@ -8,10 +8,10 @@ const { Server } = require("socket.io");
 const { LogModel } = require("./models/LogModel");
 const { postLogs, getLogs, deleteLogs } = require("./controllers/Logs");
 const {
-  getObjects,
-  postObjects,
-  deleteObjects,
-} = require("./controllers/Objects");
+  getSamples,
+  postSamples,
+  deleteSamples,
+} = require("./controllers/Samples");
 
 dotenv.config();
 
@@ -36,9 +36,9 @@ app.get("/logs", getLogs);
 app.post("/logs", postLogs);
 app.delete("/logs", deleteLogs);
 
-app.get("/objects", getObjects);
-app.post("/objects", postObjects);
-app.delete("/objects", deleteObjects);
+app.get("/objects", getSamples);
+app.post("/objects", postSamples);
+app.delete("/objects", deleteSamples);
 
 app.set("socket", io);
 
