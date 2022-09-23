@@ -17,6 +17,7 @@ function App() {
           {
             type: "log",
             content: message.content,
+            title: message.title,
             id: message._id,
             createdAt: message.createdAt,
           },
@@ -28,6 +29,7 @@ function App() {
           {
             type: "obj",
             content: JSON.stringify(message.content),
+            title: message.title,
             id: message._id,
             createdAt: message.createdAt,
           },
@@ -52,6 +54,7 @@ function App() {
       resLog = resLog.data.map((d) => ({
         type: "log",
         content: d.content,
+        title: d.title,
         id: d._id,
         createdAt: d.createdAt,
       }));
@@ -61,6 +64,7 @@ function App() {
       resObj = resObj.data.map((d) => ({
         type: "obj",
         content: JSON.stringify(d.content),
+        title: d.title,
         id: d._id,
         createdAt: d.createdAt,
       }));

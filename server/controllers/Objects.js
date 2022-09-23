@@ -2,7 +2,8 @@ const { ObjectModel } = require("../models/ObjectModel.js");
 
 exports.getObjects = async (req, res) => {
   try {
-    const data = await ObjectModel.find({ visible: true });
+    const title = req.query?.title;
+    const data = await ObjectModel.find({ visible: true, title: title });
     return res.status(200).json(data);
   } catch (error) {
     console.log(error);

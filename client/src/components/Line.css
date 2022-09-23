@@ -11,6 +11,11 @@
   min-width: 5rem;
   font-weight: bold;
 }
+.line-title {
+  min-width: 8rem;
+  font-weight: bold;
+  color: aqua;
+}
 .obj {
   color: lime;
 }
@@ -26,6 +31,6 @@
 
 .line-content {
   text-align: left;
-  max-width: calc(100% - 20rem);
+  max-width: calc(100% - 28rem);
   overflow-wrap: break-word;
 }
