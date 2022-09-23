@@ -11,6 +11,7 @@ const {
   getObjects,
   postObjects,
   deleteObjects,
+  getCSVObjects,
 } = require("./controllers/Objects");
 
 dotenv.config();
@@ -37,6 +38,7 @@ app.post("/logs", postLogs);
 app.delete("/logs", deleteLogs);
 
 app.get("/objects", getObjects);
+app.get("/objects/csv", getCSVObjects);
 app.post("/objects", postObjects);
 app.delete("/objects", deleteObjects);
 

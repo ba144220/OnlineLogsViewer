@@ -15,6 +15,21 @@ exports.getObjects = async (req, res) => {
     return res.status(500).send();
   }
 };
+exports.getCSVObjects = async (req, res) => {
+  try {
+    const title = req.query?.title;
+    let data;
+    if (title) {
+      data = await ObjectModel.find({ visible: true, title: title });
+    } else {
+      data = await ObjectModel.find({ visible: true });
+    }
+    return res.status(200).json(data.map((d) => d.content));
+  } catch (error) {
+    console.log(error);
+    return res.status(500).send();
+  }
+};
 exports.postObjects = async (req, res) => {
   try {
     const { content, title } = req.body;
